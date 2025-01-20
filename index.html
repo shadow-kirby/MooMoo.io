@@ -17,14 +17,15 @@
 </head>
 <body>
     <script>
+      let axe = false
+      let stick = true
 function setup() {
   createCanvas(windowWidth/1.02, windowHeight/1.025);
   treex = random(100, 900)
   treey = random(200, 400)
   treenum = 10
-  
-  x = 0
-  y = 0
+  x = 400
+  y = 400
 
 }
 var tree = function(x, y){
@@ -102,19 +103,25 @@ fill(255, 255, 255);
 text("MooMoo.io", windowWidth / 3, 269);
 strokeWeight(3.7);
   stroke(40, 40, 60);
-
-  // translate(this.x, this.y);
-    fill(52, 51, 72);
-    rect(22, -15, 9, 71, 2);
+if (axe === true){
+  fill(52, 51, 72);
+    rect(19 + x, -50 + y, 9, 71, 2);
     fill(84, 84, 118);
-    rect(32, -36, 31, 21, 2);
+    rect(16 + x, -47 + y, 31, 21, 2);
+}
+if (stick === true){
+  fill(52, 51, 72);
+    rect(19 + x, -50 + y, 9, 71, 2);
+}
+  // translate(this.x, this.y);
   // translate(this.x, this.y);
   // person
+
   fill(130, 99, 85);
-  ellipse(22, -14, 15, 15); // right hand
-  ellipse(22, 11, 15, 15); // left hand
+  ellipse(22 + x, -14 + y, 15, 15); // right hand
+  ellipse(22 + x, 11 + y, 15, 15); // left hand
   fill(130, 99, 85);
-  ellipse(0, 0, 45, 45); // head
+  ellipse(0 + x, 0 + y, 45, 45); // head
   fill(0);
 }
 
