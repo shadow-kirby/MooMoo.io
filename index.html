@@ -17,8 +17,9 @@
 </head>
 <body>
     <script>
-      let axe = false
-      let stick = true
+      let axe = true
+      let stick = false
+      let daggers = false
 function setup() {
   createCanvas(windowWidth/1.02, windowHeight/1.025);
   treex = random(100, 900)
@@ -26,6 +27,8 @@ function setup() {
   treenum = 10
   x = 400
   y = 400
+  rectMode(CENTER);//Change the origin of each rectangle to it's center.
+imageMode(CENTER);
 
 }
 var tree = function(x, y){
@@ -105,13 +108,39 @@ strokeWeight(3.7);
   stroke(40, 40, 60);
 if (axe === true){
   fill(52, 51, 72);
-    rect(19 + x, -50 + y, 9, 71, 2);
+    rect(19 + x, -20 + y, 9, 71, 2);
     fill(84, 84, 118);
-    rect(16 + x, -47 + y, 31, 21, 2);
+    rect(27 + x, -42 + y, 31, 21, 2);
 }
 if (stick === true){
   fill(52, 51, 72);
-    rect(19 + x, -50 + y, 9, 71, 2);
+    rect(20 + x, -23 + y, 9, 71, 2);
+}
+if (daggers == true){
+  translate(0,5);
+                fill(WOOD);
+                rect(0,15,30,7.5,1);
+                translate(-2,0);
+                fill(STONE);
+                beginShape();
+                vertex(17.5+2.5,15-3.75+0.5);
+                bezierVertex(25,10,87,15,17.5+2.5,15+3.75+0.5);
+                vertex(17.5+2.5,15+3.75+0.5);
+                endShape(CLOSE);
+                rect(17.5,15,5,15);
+                translate(2,0);
+                translate(0,-5);
+                translate(0,-5);
+                fill(WOOD);
+                rect(0,-15,30,7.5,1);
+                translate(-2,0);
+                fill(STONE);
+                beginShape();
+                vertex(17.5+2.5,-15+3.75+0.5);
+                bezierVertex(25,-10,87,-15,17.5+2.5,-15-3.75+0.5);
+                vertex(17.5+2.5,-15-3.75+0.5);
+                endShape(CLOSE);
+                rect(17.5,-15,5,15);
 }
   // translate(this.x, this.y);
   // translate(this.x, this.y);
