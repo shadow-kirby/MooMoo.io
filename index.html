@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  body {
+    background-color:black;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js" integrity="sha512-1YMgn4j8cIL91s14ByDGmHtBU6+F8bWOMcF47S0cRO3QNm8SKPNexy4s3OCim9fABUtO++nJMtcpWbINWjMSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <script>
+function setup() {
+  createCanvas(windowWidth/1.02, windowHeight/1.025);
+  treex = random(100, 900)
+  treey = random(200, 400)
+  treenum = 10
+  
+  x = 0
+  y = 0
+
+}
+var tree = function(x, y){
+  strokeWeight(3.7);
+  stroke(40, 40, 60);
+            fill(122, 144, 95);
+            beginShape();
+            vertex(75 + x, 0 + y);
+            vertex(90.09688679024191 + x, 43.388373911755814 + y);
+            vertex(46.76173513940502 + x, 58.637361185102236 + y);
+            vertex(22.252093395631444 + x, 97.49279121818236 + y);
+            vertex(-16.689070046723575 + x, 73.11959341363678 + y);
+            vertex(-62.34898018587335 + x, 78.18314824680299 + y);
+            vertex(-67.57266509268143 + x, 32.541280433816866 + y);
+            vertex(-100 + x, -7.657137397853898e-14 + y);
+            vertex(-67.57266509268143 + x, -32.54128043381688 + y);
+            vertex(-62.348980185873295 + x, -78.18314824680303 + y);
+            vertex(-16.689070046723593 + x, -73.11959341363678 + y);
+            vertex(22.25209339563151 + x, -97.49279121818235 + y);
+            vertex(46.761735139405005 + x, -58.63736118510224 + y);
+            vertex(90.09688679024194 + x, -43.38837391175575 + y);
+            endShape(CLOSE);
+            fill(136, 157, 109);
+            noStroke();
+            beginShape();
+            vertex(40 + x, 0 + y);
+            vertex(45.048443395120955 + x, 21.694186955877907 + y);
+            vertex(24.939592074349342 + x, 31.273259298721193 + y);
+            vertex(11.126046697815722 + x, 48.74639560909118 + y);
+            vertex(-8.900837358252573 + x, 38.99711648727295 + y);
+            vertex(-31.174490092936676 + x, 39.09157412340149 + y);
+            vertex(-36.03875471609676 + x, 17.35534956470233 + y);
+            vertex(-50 + x, -3.828568698926949e-14 + y);
+            vertex(-36.03875471609676 + x, -17.355349564702337 + y);
+            vertex(-31.174490092936647 + x, -39.091574123401514 + y);
+            vertex(-8.900837358252584 + x, -38.99711648727295 + y);
+            vertex(11.126046697815754 + x, -48.746395609091174 + y);
+            vertex(24.939592074349335 + x, -31.273259298721197 + y);
+            vertex(45.04844339512097 + x, -21.694186955877875 + y);
+            endShape(CLOSE);
+};
+
+let trees = function(numberoftrees, max_x, min_x, max_y, min_y){
+  for (let d = 0; d < numberoftrees; d++){
+    tree(random(min_x, max_x), random(min_y, max_y))
+  }
+}
+function draw() {
+  // set the context properties
+  var gridSize = 80;
+  var cellSize = 45;
+  for (var i = 0; i < gridSize; i++) {
+    for (var j = 0; j < gridSize; j++) {
+      fill(130, 171, 84)
+      strokeWeight(2.9);
+      stroke(125, 145, 84);
+      rect(i * cellSize, j * cellSize, cellSize, cellSize);
+    }
+  }
+tree(150, 150)
+tree(580, 580)
+tree(990, 290)
+tree(treex, treey)
+tree(580, 580)
+tree(990, 290)
+fill(255);
+  noStroke()
+  textSize(50);
+  textFont("Hammersmith One");
+  textSize(100);
+fill(173, 173, 173);
+  noStroke()
+text("MooMoo.io", windowWidth / 3, 273);
+fill(255, 255, 255);
+text("MooMoo.io", windowWidth / 3, 269);
+strokeWeight(3.7);
+  stroke(40, 40, 60);
+
+  // translate(this.x, this.y);
+    fill(52, 51, 72);
+    rect(22, -15, 9, 71, 2);
+    fill(84, 84, 118);
+    rect(32, -36, 31, 21, 2);
+  // translate(this.x, this.y);
+  // person
+  fill(130, 99, 85);
+  ellipse(22, -14, 15, 15); // right hand
+  ellipse(22, 11, 15, 15); // left hand
+  fill(130, 99, 85);
+  ellipse(0, 0, 45, 45); // head
+  fill(0);
+}
+
+// var draw = function() {
+//     if (page === 'game'){
+//          translate(-Player.x + width / 2, -Player.y + height / 2); // Translate the canvas
+//   var gridSize = 80;
+//   var cellSize = 45;
+    
+//   for (var i = 0; i < gridSize; i++) {
+//     for (var j = 0; j < gridSize; j++) {
+//       fill(130, 171, 84);
+//       strokeWeight(2.9);
+//       stroke(125, 145, 84);
+//       rect(i * cellSize, j * cellSize, cellSize, cellSize);
+//     }
+//   }
+    
+//   if (punching === true){
+//       if (axe_angle < 1){
+//             axe_angle += 0.5;   
+//       } else {
+//           punching = false;
+//       }
+//   } else {
+//      if (axe_angle > 0){
+//           axe_angle -= 0.1; 
+//      }
+//   }
+//   if (conpunch === true){
+//     if (punching === true){
+//       if (axe_angle < 1){
+//             axe_angle += 0.5;   
+//             if (keydown == 'e') {
+//                punching = false;
+//             }
+//       }
+//   } else {
+//      if (axe_angle > 0){
+//           axe_angle -= 0.1; 
+//      }
+//   }
+//   }
+//     }
+// };
+// mousePressed = function(){
+//     punching = true;
+// };
+
+// keyPressed = function() {
+//   if (key === 'e') {
+//       conpunch = true;
+//       punching = true;
+//   }
+// };
+
+    </script>
+</body>
+</html>
