@@ -27,6 +27,7 @@ function setup() {
   treey = random(200, 400)
   treenum = 10
   x = width / 2
+  name = "Unknown"
   y = height / 2
   rectMode(CENTER);//Change the origin of each rectangle to it's center.
 imageMode(CENTER);
@@ -156,7 +157,24 @@ if (daggers == true){
   ellipse(22 + x, 11 + y, 15, 15); // left hand
   fill(130, 99, 85);
   ellipse(0 + x, 0 + y, 45, 45); // head
-  fill(0);
+  textSize(15.5);
+  fill(255,255,255);
+  text(name, -44 + x, -35 + y);
+  if (keyIsDown(LEFT_ARROW) === true) {
+    x -= 2;
+  }
+
+  if (keyIsDown(RIGHT_ARROW) === true) {
+    x += 2;
+  }
+
+  if (keyIsDown(UP_ARROW) === true) {
+    y -= 2;
+  }
+
+  if (keyIsDown(DOWN_ARROW) === true) {
+    y += 2;
+  }
 }
 
 // var draw = function() {
@@ -205,12 +223,12 @@ if (daggers == true){
 //     punching = true;
 // };
 
-// keyPressed = function() {
-//   if (key === 'e') {
-//       conpunch = true;
-//       punching = true;
-//   }
-// };
+keyPressed = function() {
+  if (key === 'e') {
+      // conpunch = true;
+      // punching = true;
+  }
+};
 
     </script>
 </body>
