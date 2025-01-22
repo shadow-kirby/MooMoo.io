@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MooMoo.io</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="shortcut icon" href="Apple-1.webp" type="image/x-icon"> 
 <style>
   body {
     background-color:black;
@@ -25,8 +26,8 @@ function setup() {
   treex = random(100, 900)
   treey = random(200, 400)
   treenum = 10
-  x = 400
-  y = 400
+  x = width / 2
+  y = height / 2
   rectMode(CENTER);//Change the origin of each rectangle to it's center.
 imageMode(CENTER);
 
@@ -88,12 +89,17 @@ function draw() {
       rect(i * cellSize, j * cellSize, cellSize, cellSize);
     }
   }
-tree(150, 150)
-tree(580, 580)
-tree(990, 290)
-tree(treex, treey)
-tree(580, 580)
-tree(990, 290)
+  tree(86, 150);
+tree(580, 580);
+tree(150, 590);
+tree(500, 500);
+tree(580, 580);
+tree(990, 290);
+tree(250, 250);
+tree(680, 680);
+tree(1090, 390);
+tree(600, 300);
+tree(680, 680);
 fill(255);
   noStroke()
   textSize(50);
@@ -145,7 +151,6 @@ if (daggers == true){
   // translate(this.x, this.y);
   // translate(this.x, this.y);
   // person
-
   fill(130, 99, 85);
   ellipse(22 + x, -14 + y, 15, 15); // right hand
   ellipse(22 + x, 11 + y, 15, 15); // left hand
@@ -156,7 +161,7 @@ if (daggers == true){
 
 // var draw = function() {
 //     if (page === 'game'){
-//          translate(-Player.x + width / 2, -Player.y + height / 2); // Translate the canvas
+        //  translate(-Player.x + width / 2, -Player.y + height / 2); // Translate the canvas
 //   var gridSize = 80;
 //   var cellSize = 45;
     
