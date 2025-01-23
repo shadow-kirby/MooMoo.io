@@ -43,6 +43,7 @@
       div.position(0, 0);
     }
     let h = 45
+    let toggle = false
     let w = 45
     let page = 'game'
     let axe = true
@@ -167,7 +168,6 @@
         grid()
         strokeWeight(3.7);
         stroke(40, 40, 60);
-        
         let angle = atan2(mouseY - height / 2, mouseX - width / 2);
         if (punching == true) {
           console.log("punching on");
@@ -179,6 +179,14 @@
         } else {
           if (axe_angle > 0) {
             axe_angle -= 0.1;
+            console.log(axe_angle)
+          }
+        }
+        if (axe_angle == -0.09999999999999998 && toggle == true){
+          counter++
+          if (counter == 30){
+            counter = 0
+            punching = true
           }
         }
         // if (conpunch === true) {
@@ -305,8 +313,10 @@
 
     keyPressed = function () {
       if (key === 'e') {
-        conpunch = true;
-        punching = true;
+        toggle = !toggle
+        if (toggle === true){
+          punching = true
+        }
       }
     };
 
