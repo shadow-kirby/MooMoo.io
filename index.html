@@ -43,14 +43,16 @@ let axe = true
 let stick = false
 let daggers = false
 let stop = false
+let conpunch = false
+let punching = false
 function setup() {
   createCanvas(windowWidth/1.02, windowHeight/1.025);
   treex = random(100, 900)
   treey = random(200, 400)
   treenum = 10
-  x = width / 2
+  x = 500
   name = "Unknown"
-  y = height / 2
+  y = 500
   rectMode(CENTER);//Change the origin of each rectangle to it's center.
 imageMode(CENTER);
 }
@@ -148,11 +150,18 @@ if (page == 'game'){
   grid()
   strokeWeight(3.7);
   stroke(40, 40, 60);
+  let angle = atan2(mouseY - height / 2, mouseX - width / 2);
+  let axe_angle = 0
+  fill(0)
+  push()
+  translate(width/2, height/2)
+  rotate(angle)
+  rotate(axe_angle)
 if (axe === true){
   fill(52, 51, 72);
-    rect(21 + 800, -15 + 400, 9, 71, 2);
+    rect(21, -15, 9, 71, 2);
     fill(84, 84, 118);
-    rect(28 + 800, -37 + 400, 31, 21, 2);
+    rect(28, -37, 31, 21, 2);
 }
 if (stick === true){
   fill(52, 51, 72);
@@ -185,13 +194,41 @@ if (daggers == true){
                 rect(17.5,-15,5,15);
 }
   fill(130, 99, 85);
-  ellipse(22 + 800, -14 + 400, 15, 15); // right hand
-  ellipse(22 + 800, 11 + 400, 15, 15); // left hand
+  ellipse(22, -14, 15, 15); // right hand
+  ellipse(22, 11, 15, 15); // left hand
+  
+  rectMode(CENTER)
+  pop()
   fill(130, 99, 85);
-  ellipse(0 + 800, 0 + 400, 45, 45); // head
+  ellipse(width/2, height/2, 45, 45); // head
   textSize(15.5);
   fill(255,255,255);
-  text(name, -44 + 800, -35  + 400);
+  text(name, width/2, -35  + 400);
+  if (punching === true){
+      if (axe_angle < 1){
+            axe_angle += 0.5;   
+      } else {
+          punching = false;
+      }
+  } else {
+     if (axe_angle > 0){
+          axe_angle -= 0.1; 
+     }
+  }
+  if (conpunch === true){
+    if (punching === true){
+      if (axe_angle < 1){
+            axe_angle += 0.5;   
+            if (keydown == 'e') {
+               punching = false;
+            }
+      }
+  } else {
+     if (axe_angle > 0){
+          axe_angle -= 0.1; 
+     }
+  }
+  }
   if (keyIsDown(LEFT_ARROW) === true && stop === false) {
     x += 2;
   }
@@ -224,60 +261,27 @@ if (daggers == true){
   if (keyIsDown(DOWN_ARROW) === true && stop === true) {
     y += 5;
   }
-  tree(100, 100)
+  tree(86, 150);
+tree(580, 580);
+tree(150, 590);
+tree(500, 500);
+tree(580, 580);
+tree(990, 290);
+tree(250, 250);
+tree(680, 680);
+tree(1090, 390);
+tree(600, 300);
+tree(680, 680);
+    }
 }
-}
-
-// var draw = function() {
-//     if (page === 'game'){
-        //  translate(-Player.x + width / 2, -Player.y + height / 2); // Translate the canvas
-//   var gridSize = 80;
-//   var cellSize = 45;
-    
-//   for (var i = 0; i < gridSize; i++) {
-//     for (var j = 0; j < gridSize; j++) {
-//       fill(130, 171, 84);
-//       strokeWeight(2.9);
-//       stroke(125, 145, 84);
-//       rect(i * cellSize, j * cellSize, cellSize, cellSize);
-//     }
-//   }
-    
-//   if (punching === true){
-//       if (axe_angle < 1){
-//             axe_angle += 0.5;   
-//       } else {
-//           punching = false;
-//       }
-//   } else {
-//      if (axe_angle > 0){
-//           axe_angle -= 0.1; 
-//      }
-//   }
-//   if (conpunch === true){
-//     if (punching === true){
-//       if (axe_angle < 1){
-//             axe_angle += 0.5;   
-//             if (keydown == 'e') {
-//                punching = false;
-//             }
-//       }
-//   } else {
-//      if (axe_angle > 0){
-//           axe_angle -= 0.1; 
-//      }
-//   }
-//   }
-//     }
-// };
-// mousePressed = function(){
-//     punching = true;
-// };
+mousePressed = function(){
+    punching = true;
+};
 
 keyPressed = function() {
   if (key === 'e') {
       // conpunch = true;
-      // punching = true;
+      punching = true;
   }
 };
 
