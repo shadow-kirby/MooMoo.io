@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="shortcut icon" href="Apple-1.webp" type="image/x-icon">
+  <script defer src="https://unpkg.com/p5"></script>
+
+<!-- Includes the p5.collide2D addon library -->
+<script defer src="https://unpkg.com/p5.collide2d"></script>
   <style>
     body {
       background-color: rgb(0, 0, 0);
@@ -46,13 +50,23 @@
     function naming() {
       name = input.value();
     }
-    function collision(x1, y1, r1, x2, y2, r2) {
-      // Calculate the distance between the centers of the circles
-      let distance = dist(x1, y1, x2, y2);
+    function checkTreeCollision(x1, y1) {
+  // Create an array to store the tree's vertices
+  let treeVertices = [];
 
-      // Check if the distance is less than or equal to the sum of the radii
-      return distance <= r1 + r2;
-    }
+  // Add the outer vertices of the tree
+  treeVertices.push([75 + x + x1, 0 + y + y1]);
+  treeVertices.push([90.09688679024191 + x + x1, 43.388373911755814 + y + y1]); 
+  // ... (add all other outer vertices)
+
+  // Add the inner vertices of the tree
+  treeVertices.push([40 + x + x1, 0 + y + y1]);
+  treeVertices.push([45.048443395120955 + x + x1, 21.694186955877907 + y + y1]); 
+  // ... (add all other inner vertices)
+
+  // Check for collision using p5.collide2D.pointPoly()
+  // return collidePointPoly(x1, y1, treeVertices); 
+}
 
     var shadow = function () {
       let div = createDiv('');
@@ -131,7 +145,7 @@
       vertex((24.939592074349335 + tree_x + x), (-31.273259298721197 + tree_y + y));
       vertex((45.04844339512097 + tree_x + x), (-21.694186955877875 + tree_y + y));
       endShape(CLOSE);
-      if (collision(tree_x + x, tree_y + y, 4, width / 2, height / 2, 5)) {
+      if (checkTreeCollision(tree_x + x, tree_y + y)) {
         stop = true
       } else {
         stop = false
@@ -185,6 +199,11 @@
         textSize(100);
         fill(173, 173, 173);
         noStroke()
+        let c = color(0, 0, 0);
+        c.setAlpha(128);
+// Draw the right rectangle.
+fill(c);
+rect(50, 20,  windowWidth * 3,  windowHeight * 3);
         text("MooMoo.io", windowWidth / 3, 273);
         fill(255, 255, 255);
         text("MooMoo.io", windowWidth / 3, 269);
@@ -275,19 +294,19 @@
         text(name, width / 2, height/2 - 35);
       
         if (keyIsDown(LEFT_ARROW) === true && stop === false) {
-          x += 2;
+          x += 3;
          }
 
         if (keyIsDown(RIGHT_ARROW) === true && stop === false) {
-          x -= 2;
+          x -= 3;
         }
 
         if (keyIsDown(UP_ARROW) === true && stop === false) {
-          y += 2;
+          y += 3;
         }
 
         if (keyIsDown(DOWN_ARROW) === true && stop === false) {
-          y -= 2;
+          y -= 3;
         }
 
 
