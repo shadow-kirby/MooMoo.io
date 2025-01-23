@@ -24,14 +24,25 @@
 </head>
 <body>
      <script>
+function collision(x1, y1, r1, x2, y2, r2) {
+  // Calculate the distance between the centers of the circles
+  let distance = dist(x1, y1, x2, y2); 
+
+  // Check if the distance is less than or equal to the sum of the radii
+  return distance <= r1 + r2;
+}
+
       var shadow = function(){
   let div = createDiv('');
   div.position(0, 0);
 }
-      let page = 'title'
-      let axe = true
-      let stick = false
-      let daggers = false
+let h = 45
+let w = 45
+let page = 'game'
+let axe = true
+let stick = false
+let daggers = false
+let stop = false
 function setup() {
   createCanvas(windowWidth/1.02, windowHeight/1.025);
   treex = random(100, 900)
@@ -40,57 +51,59 @@ function setup() {
   x = width / 2
   name = "Unknown"
   y = height / 2
-  shadow()
   rectMode(CENTER);//Change the origin of each rectangle to it's center.
 imageMode(CENTER);
 }
-var tree = function(x, y){
+var tree = function(tree_x, tree_y){
   strokeWeight(3.7);
   stroke(40, 40, 60);
             fill(122, 144, 95);
             beginShape();
-            vertex(75 + x, 0 + y);
-            vertex(90.09688679024191 + x, 43.388373911755814 + y);
-            vertex(46.76173513940502 + x, 58.637361185102236 + y);
-            vertex(22.252093395631444 + x, 97.49279121818236 + y);
-            vertex(-16.689070046723575 + x, 73.11959341363678 + y);
-            vertex(-62.34898018587335 + x, 78.18314824680299 + y);
-            vertex(-67.57266509268143 + x, 32.541280433816866 + y);
-            vertex(-100 + x, -7.657137397853898e-14 + y);
-            vertex(-67.57266509268143 + x, -32.54128043381688 + y);
-            vertex(-62.348980185873295 + x, -78.18314824680303 + y);
-            vertex(-16.689070046723593 + x, -73.11959341363678 + y);
-            vertex(22.25209339563151 + x, -97.49279121818235 + y);
-            vertex(46.761735139405005 + x, -58.63736118510224 + y);
-            vertex(90.09688679024194 + x, -43.38837391175575 + y);
+            vertex(75 + tree_x + x, 0 + tree_y + y);
+            vertex(90.09688679024191 + tree_x + x, 43.388373911755814 + tree_y + y);
+            vertex(46.76173513940502 + tree_x + x, 58.637361185102236 + tree_y + y);
+            vertex(22.252093395631444 + tree_x + x, 97.49279121818236 + tree_y + y);
+            vertex(-16.689070046723575 + tree_x + x, 73.11959341363678 + tree_y + y);
+            vertex(-62.34898018587335 + tree_x + x, 78.18314824680299 + tree_y + y);
+            vertex(-67.57266509268143 + tree_x + x, 32.541280433816866 + tree_y + y);
+            vertex(-100 + tree_x + x, -7.657137397853898e-14 + tree_y + y);
+            vertex(-67.57266509268143 + tree_x + x, -32.54128043381688 + tree_y + y);
+            vertex(-62.348980185873295 + tree_x + x, -78.18314824680303 + tree_y + y);
+            vertex(-16.689070046723593 + tree_x + x, -73.11959341363678 + tree_y + y);
+            vertex(22.25209339563151 + tree_x + x, -97.49279121818235 + tree_y + y);
+            vertex(46.761735139405005 + tree_x + x, -58.63736118510224 + tree_y + y);
+            vertex(90.09688679024194 + tree_x + x, -43.38837391175575 + tree_y + y);
             endShape(CLOSE);
             fill(136, 157, 109);
             noStroke();
             beginShape();
-            vertex(40 + x, 0 + y);
-            vertex(45.048443395120955 + x, 21.694186955877907 + y);
-            vertex(24.939592074349342 + x, 31.273259298721193 + y);
-            vertex(11.126046697815722 + x, 48.74639560909118 + y);
-            vertex(-8.900837358252573 + x, 38.99711648727295 + y);
-            vertex(-31.174490092936676 + x, 39.09157412340149 + y);
-            vertex(-36.03875471609676 + x, 17.35534956470233 + y);
-            vertex(-50 + x, -3.828568698926949e-14 + y);
-            vertex(-36.03875471609676 + x, -17.355349564702337 + y);
-            vertex(-31.174490092936647 + x, -39.091574123401514 + y);
-            vertex(-8.900837358252584 + x, -38.99711648727295 + y);
-            vertex(11.126046697815754 + x, -48.746395609091174 + y);
-            vertex(24.939592074349335 + x, -31.273259298721197 + y);
-            vertex(45.04844339512097 + x, -21.694186955877875 + y);
+            vertex(40 + tree_x + x), (0 + tree_y + y);
+            vertex((45.048443395120955 + tree_x + x), (21.694186955877907 + tree_y + y));
+            vertex((24.939592074349342 + tree_x + x), (31.273259298721193 + tree_y + y));
+            vertex((11.126046697815722 + tree_x + x), (48.74639560909118 + tree_y + y));
+            vertex((-8.900837358252573 + tree_x + x), (38.99711648727295 + tree_y + y));
+            vertex((-31.174490092936676 + tree_x + x), (39.09157412340149 + tree_y + y));
+            vertex((-36.03875471609676 + tree_x + x), (17.35534956470233 + tree_y + y));
+            vertex((-50 + tree_x + x), (-3.828568698926949e-14 + tree_y + y));
+            vertex((-36.03875471609676 + tree_x + x), (-17.355349564702337 + tree_y + y));
+            vertex((-31.174490092936647 + tree_x + x), (-39.091574123401514 + tree_y + y));
+            vertex((-8.900837358252584 + tree_x + x), (-38.99711648727295 + tree_y + y));
+            vertex((11.126046697815754 + tree_x + x), (-48.746395609091174 + tree_y + y));
+            vertex((24.939592074349335 + tree_x + x), (-31.273259298721197 + tree_y + y));
+            vertex((45.04844339512097 + tree_x + x), (-21.694186955877875 + tree_y + y));
             endShape(CLOSE);
+            if (collision(tree_x + x,tree_y + y,4,x,y,10)){
+              stop = true
+            } else {
+              stop = false
+            }
 };
 let trees = function(numberoftrees, max_x, min_x, max_y, min_y){
   for (let d = 0; d < numberoftrees; d++){
     tree(random(min_x, max_x), random(min_y, max_y))
   }
 }
-function draw() {
-if (page == 'title'){
-  // set the context properties
+let grid = function(){
   var gridSize = 80;
   var cellSize = 45;
   for (var i = 0; i < gridSize; i++) {
@@ -98,9 +111,14 @@ if (page == 'title'){
       fill(130, 171, 84)
       strokeWeight(2.9);
       stroke(125, 145, 84);
-      rect(i * cellSize, j * cellSize, cellSize, cellSize);
+      rect(i * cellSize + x, j * cellSize + y, cellSize, cellSize);
     }
   }
+}
+function draw() {
+if (page == 'title'){
+  // set the context properties
+  grid()
   tree(86, 150);
 tree(580, 580);
 tree(150, 590);
@@ -127,17 +145,18 @@ text("MooMoo.io", windowWidth / 3, 269);
   // person
 }
 if (page == 'game'){
+  grid()
   strokeWeight(3.7);
   stroke(40, 40, 60);
 if (axe === true){
   fill(52, 51, 72);
-    rect(21 + x, -15 + y, 9, 71, 2);
+    rect(21 + 800, -15 + 400, 9, 71, 2);
     fill(84, 84, 118);
-    rect(28 + x, -37 + y, 31, 21, 2);
+    rect(28 + 800, -37 + 400, 31, 21, 2);
 }
 if (stick === true){
   fill(52, 51, 72);
-    rect(20 + x, -23 + y, 9, 71, 2);
+    rect(20 + 800, -23 + 400, 9, 71, 2);
 }
 if (daggers == true){
   translate(0,5);
@@ -166,28 +185,46 @@ if (daggers == true){
                 rect(17.5,-15,5,15);
 }
   fill(130, 99, 85);
-  ellipse(22 + x, -14 + y, 15, 15); // right hand
-  ellipse(22 + x, 11 + y, 15, 15); // left hand
+  ellipse(22 + 800, -14 + 400, 15, 15); // right hand
+  ellipse(22 + 800, 11 + 400, 15, 15); // left hand
   fill(130, 99, 85);
-  ellipse(0 + x, 0 + y, 45, 45); // head
+  ellipse(0 + 800, 0 + 400, 45, 45); // head
   textSize(15.5);
   fill(255,255,255);
-  text(name, -44 + x, -35 + y);
-  if (keyIsDown(LEFT_ARROW) === true) {
-    x -= 2;
-  }
-
-  if (keyIsDown(RIGHT_ARROW) === true) {
+  text(name, -44 + 800, -35  + 400);
+  if (keyIsDown(LEFT_ARROW) === true && stop === false) {
     x += 2;
   }
 
-  if (keyIsDown(UP_ARROW) === true) {
+  if (keyIsDown(RIGHT_ARROW) === true && stop === false) {
+    x -= 2;
+  }
+
+  if (keyIsDown(UP_ARROW) === true && stop === false) {
+    y += 2;
+  }
+
+  if (keyIsDown(DOWN_ARROW) === true && stop === false) {
     y -= 2;
   }
 
-  if (keyIsDown(DOWN_ARROW) === true) {
-    y += 2;
+
+  if (keyIsDown(LEFT_ARROW) === true && stop === true) {
+    x -= 5;
   }
+
+  if (keyIsDown(RIGHT_ARROW) === true && stop === true) {
+    x += 5;
+  }
+
+  if (keyIsDown(UP_ARROW) === true && stop === true) {
+    y -= 5;
+  }
+
+  if (keyIsDown(DOWN_ARROW) === true && stop === true) {
+    y += 5;
+  }
+  tree(100, 100)
 }
 }
 
