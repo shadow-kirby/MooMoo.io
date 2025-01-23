@@ -1,291 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MooMoo.io</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="shortcut icon" href="Apple-1.webp" type="image/x-icon"> 
-<style>
-  body {
-    background-color:rgb(0, 0, 0);
-  }
-  div {
-    background-color: black;
-    opacity: 0.3;
-    width: 1650px;
-    height:830px;
-  }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MooMoo.io</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="Apple-1.webp" type="image/x-icon">
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+    }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js" integrity="sha512-1YMgn4j8cIL91s14ByDGmHtBU6+F8bWOMcF47S0cRO3QNm8SKPNexy4s3OCim9fABUtO++nJMtcpWbINWjMSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    div {
+      background-color: black;
+      opacity: 0.3;
+      width: 1650px;
+      height: 830px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js"
+    integrity="sha512-1YMgn4j8cIL91s14ByDGmHtBU6+F8bWOMcF47S0cRO3QNm8SKPNexy4s3OCim9fABUtO++nJMtcpWbINWjMSzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body>
-     <script>
-function collision(x1, y1, r1, x2, y2, r2) {
-  // Calculate the distance between the centers of the circles
-  let distance = dist(x1, y1, x2, y2); 
+  <script>
+    function collision(x1, y1, r1, x2, y2, r2) {
+      // Calculate the distance between the centers of the circles
+      let distance = dist(x1, y1, x2, y2);
 
-  // Check if the distance is less than or equal to the sum of the radii
-  return distance <= r1 + r2;
-}
-
-      var shadow = function(){
-  let div = createDiv('');
-  div.position(0, 0);
-}
-let h = 45
-let w = 45
-let page = 'game'
-let axe = true
-let stick = false
-let daggers = false
-let stop = false
-let conpunch = false
-let punching = false
-function setup() {
-  createCanvas(windowWidth/1.02, windowHeight/1.025);
-  treex = random(100, 900)
-  treey = random(200, 400)
-  treenum = 10
-  x = 500
-  name = "Unknown"
-  y = 500
-  rectMode(CENTER);//Change the origin of each rectangle to it's center.
-imageMode(CENTER);
-}
-var tree = function(tree_x, tree_y){
-  strokeWeight(3.7);
-  stroke(40, 40, 60);
-            fill(122, 144, 95);
-            beginShape();
-            vertex(75 + tree_x + x, 0 + tree_y + y);
-            vertex(90.09688679024191 + tree_x + x, 43.388373911755814 + tree_y + y);
-            vertex(46.76173513940502 + tree_x + x, 58.637361185102236 + tree_y + y);
-            vertex(22.252093395631444 + tree_x + x, 97.49279121818236 + tree_y + y);
-            vertex(-16.689070046723575 + tree_x + x, 73.11959341363678 + tree_y + y);
-            vertex(-62.34898018587335 + tree_x + x, 78.18314824680299 + tree_y + y);
-            vertex(-67.57266509268143 + tree_x + x, 32.541280433816866 + tree_y + y);
-            vertex(-100 + tree_x + x, -7.657137397853898e-14 + tree_y + y);
-            vertex(-67.57266509268143 + tree_x + x, -32.54128043381688 + tree_y + y);
-            vertex(-62.348980185873295 + tree_x + x, -78.18314824680303 + tree_y + y);
-            vertex(-16.689070046723593 + tree_x + x, -73.11959341363678 + tree_y + y);
-            vertex(22.25209339563151 + tree_x + x, -97.49279121818235 + tree_y + y);
-            vertex(46.761735139405005 + tree_x + x, -58.63736118510224 + tree_y + y);
-            vertex(90.09688679024194 + tree_x + x, -43.38837391175575 + tree_y + y);
-            endShape(CLOSE);
-            fill(136, 157, 109);
-            noStroke();
-            beginShape();
-            vertex(40 + tree_x + x), (0 + tree_y + y);
-            vertex((45.048443395120955 + tree_x + x), (21.694186955877907 + tree_y + y));
-            vertex((24.939592074349342 + tree_x + x), (31.273259298721193 + tree_y + y));
-            vertex((11.126046697815722 + tree_x + x), (48.74639560909118 + tree_y + y));
-            vertex((-8.900837358252573 + tree_x + x), (38.99711648727295 + tree_y + y));
-            vertex((-31.174490092936676 + tree_x + x), (39.09157412340149 + tree_y + y));
-            vertex((-36.03875471609676 + tree_x + x), (17.35534956470233 + tree_y + y));
-            vertex((-50 + tree_x + x), (-3.828568698926949e-14 + tree_y + y));
-            vertex((-36.03875471609676 + tree_x + x), (-17.355349564702337 + tree_y + y));
-            vertex((-31.174490092936647 + tree_x + x), (-39.091574123401514 + tree_y + y));
-            vertex((-8.900837358252584 + tree_x + x), (-38.99711648727295 + tree_y + y));
-            vertex((11.126046697815754 + tree_x + x), (-48.746395609091174 + tree_y + y));
-            vertex((24.939592074349335 + tree_x + x), (-31.273259298721197 + tree_y + y));
-            vertex((45.04844339512097 + tree_x + x), (-21.694186955877875 + tree_y + y));
-            endShape(CLOSE);
-            if (collision(tree_x + x,tree_y + y,4,x,y,10)){
-              stop = true
-            } else {
-              stop = false
-            }
-};
-let trees = function(numberoftrees, max_x, min_x, max_y, min_y){
-  for (let d = 0; d < numberoftrees; d++){
-    tree(random(min_x, max_x), random(min_y, max_y))
-  }
-}
-let grid = function(){
-  var gridSize = 80;
-  var cellSize = 45;
-  for (var i = 0; i < gridSize; i++) {
-    for (var j = 0; j < gridSize; j++) {
-      fill(130, 171, 84)
-      strokeWeight(2.9);
-      stroke(125, 145, 84);
-      rect(i * cellSize + x, j * cellSize + y, cellSize, cellSize);
+      // Check if the distance is less than or equal to the sum of the radii
+      return distance <= r1 + r2;
     }
-  }
-}
-function draw() {
-if (page == 'title'){
-  // set the context properties
-  grid()
-  tree(86, 150);
-tree(580, 580);
-tree(150, 590);
-tree(500, 500);
-tree(580, 580);
-tree(990, 290);
-tree(250, 250);
-tree(680, 680);
-tree(1090, 390);
-tree(600, 300);
-tree(680, 680);
-fill(255);
-  noStroke()
-  textSize(50);
-  textFont("Hammersmith One");
-  textSize(100);
-fill(173, 173, 173);
-  noStroke()
-text("MooMoo.io", windowWidth / 3, 273);
-fill(255, 255, 255);
-text("MooMoo.io", windowWidth / 3, 269);
-  // translate(this.x, this.y);
-  // translate(this.x, this.y);
-  // person
-}
-if (page == 'game'){
-  grid()
-  strokeWeight(3.7);
-  stroke(40, 40, 60);
-  let angle = atan2(mouseY - height / 2, mouseX - width / 2);
-  let axe_angle = 0
-  fill(0)
-  push()
-  translate(width/2, height/2)
-  rotate(angle)
-  rotate(axe_angle)
-if (axe === true){
-  fill(52, 51, 72);
-    rect(21, -15, 9, 71, 2);
-    fill(84, 84, 118);
-    rect(28, -37, 31, 21, 2);
-}
-if (stick === true){
-  fill(52, 51, 72);
-    rect(20 + 800, -23 + 400, 9, 71, 2);
-}
-if (daggers == true){
-  translate(0,5);
-                fill(WOOD);
-                rect(0,15,30,7.5,1);
-                translate(-2,0);
-                fill(STONE);
-                beginShape();
-                vertex(17.5+2.5,15-3.75+0.5);
-                bezierVertex(25,10,87,15,17.5+2.5,15+3.75+0.5);
-                vertex(17.5+2.5,15+3.75+0.5);
-                endShape(CLOSE);
-                rect(17.5,15,5,15);
-                translate(2,0);
-                translate(0,-5);
-                translate(0,-5);
-                fill(WOOD);
-                rect(0,-15,30,7.5,1);
-                translate(-2,0);
-                fill(STONE);
-                beginShape();
-                vertex(17.5+2.5,-15+3.75+0.5);
-                bezierVertex(25,-10,87,-15,17.5+2.5,-15-3.75+0.5);
-                vertex(17.5+2.5,-15-3.75+0.5);
-                endShape(CLOSE);
-                rect(17.5,-15,5,15);
-}
-  fill(130, 99, 85);
-  ellipse(22, -14, 15, 15); // right hand
-  ellipse(22, 11, 15, 15); // left hand
-  
-  rectMode(CENTER)
-  pop()
-  fill(130, 99, 85);
-  ellipse(width/2, height/2, 45, 45); // head
-  textSize(15.5);
-  fill(255,255,255);
-  text(name, width/2, -35  + 400);
-  if (punching === true){
-      if (axe_angle < 1){
-            axe_angle += 0.5;   
+
+    var shadow = function () {
+      let div = createDiv('');
+      div.position(0, 0);
+    }
+    let h = 45
+    let w = 45
+    let page = 'game'
+    let axe = true
+    let stick = false
+    let daggers = false
+    let stop = false
+    let conpunch = false
+    let punching = false
+    let axe_angle = 0
+    let counter = 0
+    function setup() {
+      createCanvas(windowWidth / 1.02, windowHeight / 1.025);
+      treex = random(100, 900)
+      treey = random(200, 400)
+      treenum = 10
+      x = 500
+      name = "Unknown"
+      y = 500
+      rectMode(CENTER);//Change the origin of each rectangle to it's center.
+      imageMode(CENTER);
+    }
+    var tree = function (tree_x, tree_y) {
+      strokeWeight(3.7);
+      stroke(40, 40, 60);
+      fill(122, 144, 95);
+      beginShape();
+      vertex(75 + tree_x + x, 0 + tree_y + y);
+      vertex(90.09688679024191 + tree_x + x, 43.388373911755814 + tree_y + y);
+      vertex(46.76173513940502 + tree_x + x, 58.637361185102236 + tree_y + y);
+      vertex(22.252093395631444 + tree_x + x, 97.49279121818236 + tree_y + y);
+      vertex(-16.689070046723575 + tree_x + x, 73.11959341363678 + tree_y + y);
+      vertex(-62.34898018587335 + tree_x + x, 78.18314824680299 + tree_y + y);
+      vertex(-67.57266509268143 + tree_x + x, 32.541280433816866 + tree_y + y);
+      vertex(-100 + tree_x + x, -7.657137397853898e-14 + tree_y + y);
+      vertex(-67.57266509268143 + tree_x + x, -32.54128043381688 + tree_y + y);
+      vertex(-62.348980185873295 + tree_x + x, -78.18314824680303 + tree_y + y);
+      vertex(-16.689070046723593 + tree_x + x, -73.11959341363678 + tree_y + y);
+      vertex(22.25209339563151 + tree_x + x, -97.49279121818235 + tree_y + y);
+      vertex(46.761735139405005 + tree_x + x, -58.63736118510224 + tree_y + y);
+      vertex(90.09688679024194 + tree_x + x, -43.38837391175575 + tree_y + y);
+      endShape(CLOSE);
+      fill(136, 157, 109);
+      noStroke();
+      beginShape();
+      vertex(40 + tree_x + x), (0 + tree_y + y);
+      vertex((45.048443395120955 + tree_x + x), (21.694186955877907 + tree_y + y));
+      vertex((24.939592074349342 + tree_x + x), (31.273259298721193 + tree_y + y));
+      vertex((11.126046697815722 + tree_x + x), (48.74639560909118 + tree_y + y));
+      vertex((-8.900837358252573 + tree_x + x), (38.99711648727295 + tree_y + y));
+      vertex((-31.174490092936676 + tree_x + x), (39.09157412340149 + tree_y + y));
+      vertex((-36.03875471609676 + tree_x + x), (17.35534956470233 + tree_y + y));
+      vertex((-50 + tree_x + x), (-3.828568698926949e-14 + tree_y + y));
+      vertex((-36.03875471609676 + tree_x + x), (-17.355349564702337 + tree_y + y));
+      vertex((-31.174490092936647 + tree_x + x), (-39.091574123401514 + tree_y + y));
+      vertex((-8.900837358252584 + tree_x + x), (-38.99711648727295 + tree_y + y));
+      vertex((11.126046697815754 + tree_x + x), (-48.746395609091174 + tree_y + y));
+      vertex((24.939592074349335 + tree_x + x), (-31.273259298721197 + tree_y + y));
+      vertex((45.04844339512097 + tree_x + x), (-21.694186955877875 + tree_y + y));
+      endShape(CLOSE);
+      if (collision(tree_x + x, tree_y + y, 4, x, y, 10)) {
+        stop = true
       } else {
-          punching = false;
+        stop = false
       }
-  } else {
-     if (axe_angle > 0){
-          axe_angle -= 0.1; 
-     }
-  }
-  if (conpunch === true){
-    if (punching === true){
-      if (axe_angle < 1){
-            axe_angle += 0.5;   
-            if (keydown == 'e') {
-               punching = false;
-            }
+    };
+    let trees = function (numberoftrees, max_x, min_x, max_y, min_y) {
+      for (let d = 0; d < numberoftrees; d++) {
+        tree(random(min_x, max_x), random(min_y, max_y))
       }
-  } else {
-     if (axe_angle > 0){
-          axe_angle -= 0.1; 
-     }
-  }
-  }
-  if (keyIsDown(LEFT_ARROW) === true && stop === false) {
-    x += 2;
-  }
-
-  if (keyIsDown(RIGHT_ARROW) === true && stop === false) {
-    x -= 2;
-  }
-
-  if (keyIsDown(UP_ARROW) === true && stop === false) {
-    y += 2;
-  }
-
-  if (keyIsDown(DOWN_ARROW) === true && stop === false) {
-    y -= 2;
-  }
-
-
-  if (keyIsDown(LEFT_ARROW) === true && stop === true) {
-    x -= 5;
-  }
-
-  if (keyIsDown(RIGHT_ARROW) === true && stop === true) {
-    x += 5;
-  }
-
-  if (keyIsDown(UP_ARROW) === true && stop === true) {
-    y -= 5;
-  }
-
-  if (keyIsDown(DOWN_ARROW) === true && stop === true) {
-    y += 5;
-  }
-  tree(86, 150);
-tree(580, 580);
-tree(150, 590);
-tree(500, 500);
-tree(580, 580);
-tree(990, 290);
-tree(250, 250);
-tree(680, 680);
-tree(1090, 390);
-tree(600, 300);
-tree(680, 680);
     }
-}
-mousePressed = function(){
-    punching = true;
-};
-
-keyPressed = function() {
-  if (key === 'e') {
-      // conpunch = true;
+    let grid = function () {
+      var gridSize = 80;
+      var cellSize = 45;
+      for (var i = 0; i < gridSize; i++) {
+        for (var j = 0; j < gridSize; j++) {
+          fill(130, 171, 84)
+          strokeWeight(2.9);
+          stroke(125, 145, 84);
+          rect(i * cellSize + x, j * cellSize + y, cellSize, cellSize);
+        }
+      }
+    }
+    function mousePressed() {
+      console.log('press')
       punching = true;
-  }
-};
+    };
 
-    </script> 
+    function mouseReleased() {
+      console.log('press')
+      punching = true;
+    };
+    function draw() {
+      if (page == 'title') {
+        // set the context properties
+        grid()
+        tree(86, 150);
+        tree(580, 580);
+        tree(150, 590);
+        tree(500, 500);
+        tree(580, 580);
+        tree(990, 290);
+        tree(250, 250);
+        tree(680, 680);
+        tree(1090, 390);
+        tree(600, 300);
+        tree(680, 680);
+        fill(255);
+        noStroke()
+        textSize(50);
+        textFont("Hammersmith One");
+        textSize(100);
+        fill(173, 173, 173);
+        noStroke()
+        text("MooMoo.io", windowWidth / 3, 273);
+        fill(255, 255, 255);
+        text("MooMoo.io", windowWidth / 3, 269);
+        // translate(this.x, this.y);
+        // translate(this.x, this.y);
+        // person
+      }
+      if (page == 'game') {
+        grid()
+        strokeWeight(3.7);
+        stroke(40, 40, 60);
+        
+        let angle = atan2(mouseY - height / 2, mouseX - width / 2);
+        if (punching == true) {
+          console.log("punching on");
+          if (axe_angle <= 1) {
+            axe_angle+= 0.1;
+          } else {
+            punching = false;
+          }
+        } else {
+          if (axe_angle > 0) {
+            axe_angle -= 0.1;
+          }
+        }
+        // if (conpunch === true) {
+        //   if (punching === true) {
+        //     while (punching == true){
+        //       if (axe_angle <= 1) {
+        //         axe_angle += 0.1;
+        //         if (keyIsDown('e')) {
+        //           punching = false;
+        //           break;
+        //         }
+        //       }
+        //     } if (axe_angle > 1) {
+        //       if (axe_angle > 0) {
+        //         axe_angle -= 0.5;
+        //         if (keyIsDown('e')) {
+        //           punching = false;
+        //           break;
+        //         }
+        //       }
+        //     }
+        // }
+        // }
+        fill(0)
+        push()
+        translate(width / 2, height / 2)
+        rotate(angle)
+        rotate(axe_angle)
+        if (axe === true) {
+          fill(52, 51, 72);
+          rect(21, -15, 9, 71, 2);
+          fill(84, 84, 118);
+          rect(28, -37, 31, 21, 2);
+        }
+        if (stick === true) {
+          fill(52, 51, 72);
+          rect(20 + 800, -23 + 400, 9, 71, 2);
+        }
+        if (daggers == true) {
+          translate(0, 5);
+          fill(WOOD);
+          rect(0, 15, 30, 7.5, 1);
+          translate(-2, 0);
+          fill(STONE);
+          beginShape();
+          vertex(17.5 + 2.5, 15 - 3.75 + 0.5);
+          bezierVertex(25, 10, 87, 15, 17.5 + 2.5, 15 + 3.75 + 0.5);
+          vertex(17.5 + 2.5, 15 + 3.75 + 0.5);
+          endShape(CLOSE);
+          rect(17.5, 15, 5, 15);
+          translate(2, 0);
+          translate(0, -5);
+          translate(0, -5);
+          fill(WOOD);
+          rect(0, -15, 30, 7.5, 1);
+          translate(-2, 0);
+          fill(STONE);
+          beginShape();
+          vertex(17.5 + 2.5, -15 + 3.75 + 0.5);
+          bezierVertex(25, -10, 87, -15, 17.5 + 2.5, -15 - 3.75 + 0.5);
+          vertex(17.5 + 2.5, -15 - 3.75 + 0.5);
+          endShape(CLOSE);
+          rect(17.5, -15, 5, 15);
+        }
+        fill(130, 99, 85);
+        ellipse(22, -14, 15, 15); // right hand
+        ellipse(22, 11, 15, 15); // left hand
+
+        rectMode(CENTER)
+        pop()
+        fill(130, 99, 85);
+        ellipse(width / 2, height / 2, 45, 45); // head
+        textSize(15.5);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER)
+        text(name, width / 2, height/2 - 35);
+      
+        if (keyIsDown(LEFT_ARROW) === true && stop === false) {
+          x += 2;
+         }
+
+        if (keyIsDown(RIGHT_ARROW) === true && stop === false) {
+          x -= 2;
+        }
+
+        if (keyIsDown(UP_ARROW) === true && stop === false) {
+          y += 2;
+        }
+
+        if (keyIsDown(DOWN_ARROW) === true && stop === false) {
+          y -= 2;
+        }
+
+
+        if (keyIsDown(LEFT_ARROW) === true && stop === true) {
+          x -= 5;
+        }
+
+        if (keyIsDown(RIGHT_ARROW) === true && stop === true) {
+          x += 5;
+        }
+
+        if (keyIsDown(UP_ARROW) === true && stop === true) {
+          y -= 5;
+        }
+
+        if (keyIsDown(DOWN_ARROW) === true && stop === true) {
+          y += 5;
+        }
+        tree(86, 150);
+        tree(580, 580);
+        tree(150, 590);
+        tree(500, 500);
+        tree(580, 580);
+        tree(990, 290);
+        tree(250, 250);
+        tree(680, 680);
+        tree(1090, 390);
+        tree(600, 300);
+        tree(680, 680);
+      }
+    }
     
+
+    keyPressed = function () {
+      if (key === 'e') {
+        conpunch = true;
+        punching = true;
+      }
+    };
+
+  </script>
+
 </body>
+
 </html>
