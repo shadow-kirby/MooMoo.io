@@ -13,7 +13,20 @@
       background-color: rgb(0, 0, 0);
       overflow: none;
     }
-
+    button {
+      background-color: rgb(163, 228, 101);
+      border: none;
+      font-family:"Hammersmith One" ;
+      color: white;
+      width: 250px;
+      height: 30px;
+    }
+    input {
+      width: 242px;
+      height: 25px;
+      font-family:"Hammersmith One" ;
+      text-align: center;
+    }
     div {
       background-color: black;
       opacity: 0.3;
@@ -30,6 +43,9 @@
 
 <body>
   <script>
+    function naming() {
+      name = input.value();
+    }
     function collision(x1, y1, r1, x2, y2, r2) {
       // Calculate the distance between the centers of the circles
       let distance = dist(x1, y1, x2, y2);
@@ -45,7 +61,8 @@
     let h = 45
     let toggle = false
     let w = 45
-    let page = 'game'
+    let input
+    let page = 'title'
     let axe = true
     let stick = false
     let daggers = false
@@ -54,14 +71,25 @@
     let punching = false
     let axe_angle = 0
     let counter = 0
+    let button
+    function change(){
+      page = 'game'
+        input = ''
+      button = ''
+    }
     function setup() {
+      if (page == 'title'){
+      input = createInput('');
+  input.position(windowWidth / 2.45, 330);
+  input.input(naming);
+      }
       createCanvas(windowWidth / 1.02, windowHeight / 1.025);
       treex = random(100, 900)
       treey = random(200, 400)
       treenum = 10
-      x = 500
+      x = 10
       name = "Unknown"
-      y = 500
+      y = 10
       rectMode(CENTER);//Change the origin of each rectangle to it's center.
       imageMode(CENTER);
     }
@@ -103,7 +131,7 @@
       vertex((24.939592074349335 + tree_x + x), (-31.273259298721197 + tree_y + y));
       vertex((45.04844339512097 + tree_x + x), (-21.694186955877875 + tree_y + y));
       endShape(CLOSE);
-      if (collision(tree_x + x, tree_y + y, 4, x, y, 10)) {
+      if (collision(tree_x + x, tree_y + y, 4, width / 2, height / 2, 5)) {
         stop = true
       } else {
         stop = false
@@ -160,6 +188,9 @@
         text("MooMoo.io", windowWidth / 3, 273);
         fill(255, 255, 255);
         text("MooMoo.io", windowWidth / 3, 269);
+        let button = createButton('Enter Game');
+  button.position(windowWidth / 2.45, 380);
+  button.mousePressed(change);
         // translate(this.x, this.y);
         // translate(this.x, this.y);
         // person
@@ -189,27 +220,6 @@
             punching = true
           }
         }
-        // if (conpunch === true) {
-        //   if (punching === true) {
-        //     while (punching == true){
-        //       if (axe_angle <= 1) {
-        //         axe_angle += 0.1;
-        //         if (keyIsDown('e')) {
-        //           punching = false;
-        //           break;
-        //         }
-        //       }
-        //     } if (axe_angle > 1) {
-        //       if (axe_angle > 0) {
-        //         axe_angle -= 0.5;
-        //         if (keyIsDown('e')) {
-        //           punching = false;
-        //           break;
-        //         }
-        //       }
-        //     }
-        // }
-        // }
         fill(0)
         push()
         translate(width / 2, height / 2)
